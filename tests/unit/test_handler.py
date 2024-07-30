@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from hello_world import app
+from poja_sam_router import app
 
 
 @pytest.fixture()
