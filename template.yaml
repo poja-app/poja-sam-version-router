@@ -5,8 +5,7 @@ Description: >
 
 Globals:
   Function:
-    Timeout: 500
-    MemorySize: 1024
+    Timeout: 900
 
     Tracing: Active
   Api:
@@ -28,18 +27,37 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: poja_sam_router/
+
       Handler: app.lambda_handler
+
       Runtime: python3.11
+
+      MemorySize: 1024
+
       Architectures:
       - arm64
+
+      VpcConfig:
+        SecurityGroupIds:
+          - !Sub '{{resolve:ssm:/jcloudify-api/sg/id}}'
+        SubnetIds:
+          - !Sub '{{resolve:ssm:/jcloudify-api/private/subnet1/id}}'
+          - !Sub '{{resolve:ssm:/jcloudify-api/private/subnet2/id}}'
+
       Events:
         Gen:
           Type: Api
           Properties:
             Path: /{proxy+}
             Method: ANY
-            RestApiId: PojaSamVersionRouterApi
+            RestApiId:
+              Ref: PojaSamVersionRouterApi
+
       Role: !Sub '{{resolve:ssm:/jcloudify-api/${Env}/execution/role-arn}}'
+
+      Environment:
+        Variables:
+          POJA_SAM_API_KEY: !Sub '{{resolve:ssm:/jcloudify-api/${Env}/poja/sam/api/key}}'
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
@@ -59,7 +77,7 @@ Resources:
 Outputs:
   PojaSamVersionRouterApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+    Value: !Sub "https://${PojaSamVersionRouterApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
   PojaSamVersionRouterFunction:
     Description: Poja Sam Version Router Lambda Function ARN
     Value: !GetAtt PojaSamVersionRouterFunction.Arn

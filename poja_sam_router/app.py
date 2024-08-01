@@ -1,42 +1,43 @@
 import json
+import os
 
-# import requests
+import requests
+import yaml
+
+from poja_service import get_file_content_from, write_temp_file
+
+POJA_SAM_API_KEY = os.getenv("POJA_SAM_API_KEY")
+
+sam_apps = json.load(open("sam-versions.json"))
 
 
 def lambda_handler(event, context):
-    """Sample pure Lambda function
+    try:
+        code_uri = gen(event)
+    except Exception as e:
+        return {"code": "500", "message": e}
+    else:
+        return code_uri
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
 
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
+def gen(event):
+    sam_url = get_sam_url(event)
+    conf_file = write_temp_file(get_file_content_from(event, "conf"), "yml")
+    return send_request_to_sam_app(sam_url, conf_file)
 
-    context: object, required
-        Lambda Context runtime methods and attributes
 
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
+def get_sam_url(event):
+    conf = yaml.safe_load(get_file_content_from(event, "conf"))
+    cli_version = conf["general"]["cli_version"]
+    sam = [sam for sam in sam_apps if sam["cli_version"] == cli_version][0]
+    return sam["url"]
 
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
 
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
+def send_request_to_sam_app(sam_url, file):
+    with open(file, "rb") as conf_file:
+        files = {"conf": conf_file}
+        headers = {"x-api-key": POJA_SAM_API_KEY}
 
-    # try:
-    #     ip = requests.get("http://checkip.amazonaws.com/")
-    # except requests.RequestException as e:
-    #     # Send some context about this error to Lambda Logs
-    #     print(e)
+        response = requests.put(sam_url, files=files, headers=headers)
 
-    #     raise e
-
-    return {
-        "statusCode": 200,
-        "body": json.dumps({
-            "message": "hello world",
-            # "location": ip.text.replace("\n", "")
-        }),
-    }
+    return response.json()
