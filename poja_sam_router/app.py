@@ -6,18 +6,21 @@ import yaml
 
 from poja_service import get_file_content_from, write_temp_file
 
-POJA_SAM_API_KEY = os.getenv("POJA_SAM_API_KEY")
+API_KEY = os.getenv("POJA_SAM_API_KEY")
 
 sam_apps = json.load(open("sam-versions.json"))
 
 
 def lambda_handler(event, context):
-    try:
-        code_uri = gen(event)
-    except Exception as e:
-        return {"code": "500", "message": e}
+    if not is_api_key_valid(event):
+        return {"code": "403", "message": "Unauthorized"}
     else:
-        return code_uri
+        try:
+            code_uri = gen(event)
+        except Exception as e:
+            return {"code": "500", "message": str(e)}
+        else:
+            return code_uri
 
 
 def gen(event):
@@ -33,10 +36,18 @@ def get_sam_url(event):
     return sam["url"]
 
 
+def is_api_key_valid(event):
+    if "x-api-key" not in event["headers"]:
+        return False
+    else:
+        api_key = event["headers"]["x-api-key"]
+        return api_key == API_KEY
+
+
 def send_request_to_sam_app(sam_url, file):
     with open(file, "rb") as conf_file:
         files = {"conf": conf_file}
-        headers = {"x-api-key": POJA_SAM_API_KEY}
+        headers = {"x-api-key": API_KEY}
 
         response = requests.put(sam_url, files=files, headers=headers)
 
