@@ -16,13 +16,6 @@ Parameters:
     Type: String
 
 Resources:
-  PojaSamVersionRouterApi:
-    Type: AWS::Serverless::Api
-    Properties:
-      StageName: Prod
-      BinaryMediaTypes:
-        - "*~1*"
-
   PojaSamVersionRouterFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -50,14 +43,16 @@ Resources:
           Properties:
             Path: /{proxy+}
             Method: ANY
-            RestApiId:
-              Ref: PojaSamVersionRouterApi
 
       Role: !Sub '{{resolve:ssm:/jcloudify-api/${Env}/execution/role-arn}}'
 
       Environment:
         Variables:
           POJA_SAM_API_KEY: !Sub '{{resolve:ssm:/jcloudify-api/${Env}/poja/sam/api/key}}'
+
+      FunctionUrlConfig:
+        AuthType: NONE
+        InvokeMode: RESPONSE_STREAM
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
@@ -75,9 +70,10 @@ Resources:
       AutoConfigurationEnabled: 'true'
 
 Outputs:
-  PojaSamVersionRouterApi:
-    Description: API Gateway endpoint URL for Prod stage for Hello World function
-    Value: !Sub "https://${PojaSamVersionRouterApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  PojaSamVersionRouterFunctionUrl:
+    Description: Poja Sam Version Router Lambda Function URL
+    Value:
+      Fn::GetAtt: PojaSamVersionRouterFunctionUrl.FunctionUrl
   PojaSamVersionRouterFunction:
     Description: Poja Sam Version Router Lambda Function ARN
     Value: !GetAtt PojaSamVersionRouterFunction.Arn
