@@ -2,5 +2,9 @@
   {
     "cli_version": "17.0.0",
     "url": "https://jcpfilsifxb46wb5skipmzbycq0tqgsm.lambda-url.eu-west-3.on.aws/"
+  },
+  {
+    "cli_version": "17.1.0",
+    "url": "https://equjn5soliod2wqgxmwe33ywta0gaoxa.lambda-url.eu-west-3.on.aws/"
   }
 ]
