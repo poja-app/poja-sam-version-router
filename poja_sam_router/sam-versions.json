@@ -18,5 +18,9 @@
   {
     "cli_version": "18.1.0",
     "url": "https://t3v2omzrd7ims7cammls3hna340tgntl.lambda-url.eu-west-3.on.aws/"
+  },
+  {
+    "cli_version": "18.1.1",
+    "url": "https://7w66kr56hvo3r2kegzizpovygq0kfiwh.lambda-url.eu-west-3.on.aws/"
   }
 ]
