@@ -1,6 +1,7 @@
 import base64
 import tempfile
 
+import yaml
 from requests_toolbelt.multipart import decoder
 
 
@@ -30,3 +31,9 @@ def write_temp_file(content, suffix):
         file.write(content)
         file.flush()
     return file.name
+
+
+def write_cli_version_in_conf_file(content, cli_version):
+    content_as_yml = yaml.safe_load(content)
+    content_as_yml["general"]["cli_version"] = cli_version
+    return yaml.safe_dump(content_as_yml)

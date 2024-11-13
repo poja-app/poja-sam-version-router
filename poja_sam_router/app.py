@@ -4,7 +4,7 @@ import os
 import requests
 import yaml
 
-from poja_service import get_file_content_from, write_temp_file
+from poja_service import get_file_content_from, write_temp_file, write_cli_version_in_conf_file
 
 API_KEY = os.getenv("POJA_SAM_API_KEY")
 
@@ -23,17 +23,18 @@ def lambda_handler(event, context):
             return code_uri
 
 
-def gen(event):
-    sam_url = get_sam_url(event)
-    conf_file = write_temp_file(get_file_content_from(event, "conf"), "yml")
-    return send_request_to_sam_app(sam_url, conf_file)
-
-
-def get_sam_url(event):
+def get_sam_object(event):
     conf = yaml.safe_load(get_file_content_from(event, "conf"))
-    cli_version = conf["general"]["cli_version"]
-    sam = [sam for sam in sam_apps if sam["cli_version"] == cli_version][0]
-    return sam["url"]
+    public_version = conf["general"]["public_generator_version"]
+    sam = [sam for sam in sam_apps if sam["public_version"] == public_version][0]
+    return sam
+
+
+def gen(event):
+    sam = get_sam_object(event)
+    content = get_file_content_from(event, "conf")
+    conf_file = write_temp_file(write_cli_version_in_conf_file(content, sam["cli_version"]), "yml")
+    return send_request_to_sam_app(sam["url"], conf_file)
 
 
 def is_api_key_valid(event):

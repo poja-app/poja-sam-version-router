@@ -1,30 +1,7 @@
 [
   {
-    "cli_version": "17.0.0",
-    "url": "https://jcpfilsifxb46wb5skipmzbycq0tqgsm.lambda-url.eu-west-3.on.aws/"
-  },
-  {
-    "cli_version": "17.1.0",
-    "url": "https://equjn5soliod2wqgxmwe33ywta0gaoxa.lambda-url.eu-west-3.on.aws/"
-  },
-  {
-    "cli_version": "17.1.2",
-    "url": "https://yd3in37uok2v7ugcntx2ufr6bi0cphdj.lambda-url.eu-west-3.on.aws/"
-  },
-  {
-    "cli_version": "18.0.0",
-    "url": "https://jpwzbpx4giko6zn6s756duovyy0jrjah.lambda-url.eu-west-3.on.aws/"
-  },
-  {
-    "cli_version": "18.1.0",
-    "url": "https://t3v2omzrd7ims7cammls3hna340tgntl.lambda-url.eu-west-3.on.aws/"
-  },
-  {
-    "cli_version": "18.1.1",
-    "url": "https://7w66kr56hvo3r2kegzizpovygq0kfiwh.lambda-url.eu-west-3.on.aws/"
-  },
-  {
     "cli_version": "18.1.2",
-    "url": "https://rdvrzppazsdo7kd3yforugn6ny0uypbr.lambda-url.eu-west-3.on.aws/"
+    "url": "https://hjn5b5w6x3vprcecf3row2ohze0zwvim.lambda-url.eu-west-3.on.aws/",
+    "public_version": "1.0.0"
   }
 ]
