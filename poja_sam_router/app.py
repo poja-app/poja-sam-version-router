@@ -26,7 +26,7 @@ def lambda_handler(event, context):
 def get_sam_object(event):
     conf = yaml.safe_load(get_file_content_from(event, "conf"))
     public_version = conf["general"]["public_generator_version"]
-    sam = [sam for sam in sam_apps if sam["public_version"] == public_version][0]
+    sam = [sam for sam in sam_apps if sam.get("public_version") == public_version][0]
     return sam
 
 
