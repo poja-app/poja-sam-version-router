@@ -22,11 +22,11 @@
   },
   {
     "cli_version": "18.3.3",
-    "url": "https://qldlovelmfbyculytwrrrlnk3i0ewfjr.lambda-url.eu-west-3.on.aws/",
-    "public_version": "1.2.1"
+    "url": "https://qldlovelmfbyculytwrrrlnk3i0ewfjr.lambda-url.eu-west-3.on.aws/"
   },
   {
     "cli_version": "18.3.4",
-    "url": "https://xiw2ipjz3d2d4ielk2mv3wvsaq0tttnr.lambda-url.eu-west-3.on.aws/"
+    "url": "https://xiw2ipjz3d2d4ielk2mv3wvsaq0tttnr.lambda-url.eu-west-3.on.aws/",
+    "public_version": "1.1.0"
   }
 ]
