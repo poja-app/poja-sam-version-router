@@ -32,5 +32,9 @@
   {
     "cli_version": "18.3.5",
     "url": "https://7xhri6e7gcb35t446hzc5i427a0relav.lambda-url.eu-west-3.on.aws/"
+  },
+  {
+    "cli_version": "18.3.6",
+    "url": "https://7jlfcsdhiy2h7y4hpd5watfrle0tdufe.lambda-url.eu-west-3.on.aws/"
   }
 ]
