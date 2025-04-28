@@ -29,14 +29,7 @@ Resources:
 
       Architectures:
       - arm64
-
-      VpcConfig:
-        SecurityGroupIds:
-          - !Sub '{{resolve:ssm:/jcloudify-api/sg/id}}'
-        SubnetIds:
-          - !Sub '{{resolve:ssm:/jcloudify-api/private/subnet1/id}}'
-          - !Sub '{{resolve:ssm:/jcloudify-api/private/subnet2/id}}'
-
+      
       Events:
         Gen:
           Type: Api
