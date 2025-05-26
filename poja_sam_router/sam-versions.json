@@ -98,5 +98,9 @@
   {
     "cli_version": "20.0.1",
     "url": "https://l3hbnsgesf6fwf6wifrc53g4o40bwfpk.lambda-url.eu-west-3.on.aws/"
+  },
+  {
+    "cli_version": "20.0.2",
+    "url": "https://epyuzsphbgggj3lc5o2dmbqwve0lotkq.lambda-url.eu-west-3.on.aws/"
   }
 ]
