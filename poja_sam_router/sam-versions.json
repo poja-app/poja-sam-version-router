@@ -108,11 +108,11 @@
   },
   {
     "cli_version": "20.0.4",
-    "url": "https://2ldynkbjiefr5gdw3qb5u22oeu0mdrkh.lambda-url.eu-west-3.on.aws/",
-    "public_version": "1.3.0"
+    "url": "https://2ldynkbjiefr5gdw3qb5u22oeu0mdrkh.lambda-url.eu-west-3.on.aws/"
   },
   {
     "cli_version": "20.0.5",
-    "url": "https://5p4attz4vpc3lyez3w3stedzua0vlymn.lambda-url.eu-west-3.on.aws/"
+    "url": "https://5p4attz4vpc3lyez3w3stedzua0vlymn.lambda-url.eu-west-3.on.aws/",
+    "public_version": "1.3.0"
   }
 ]
