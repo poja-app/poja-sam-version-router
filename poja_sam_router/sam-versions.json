@@ -100,8 +100,7 @@
   },
   {
     "cli_version": "20.0.2",
-    "url": "https://epyuzsphbgggj3lc5o2dmbqwve0lotkq.lambda-url.eu-west-3.on.aws/",
-    "public_version": "1.3.0"
+    "url": "https://epyuzsphbgggj3lc5o2dmbqwve0lotkq.lambda-url.eu-west-3.on.aws/"
   },
   {
     "cli_version": "20.0.3",
@@ -113,6 +112,7 @@
   },
   {
     "cli_version": "20.0.5",
-    "url": "https://owfoy35enx6cz4g42mbx6gxz3u0bcelv.lambda-url.eu-west-3.on.aws/"
+    "url": "https://owfoy35enx6cz4g42mbx6gxz3u0bcelv.lambda-url.eu-west-3.on.aws/",
+    "public_version": "1.3.0"
   }
 ]
