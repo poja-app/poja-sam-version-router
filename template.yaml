@@ -37,11 +37,11 @@ Resources:
             Path: /{proxy+}
             Method: ANY
 
-      Role: !Sub '{{resolve:ssm:/jcloudify-api/${Env}/execution/role-arn}}'
+      Role: !Sub '{{resolve:ssm:/poja-api/${Env}/execution/role-arn}}'
 
       Environment:
         Variables:
-          POJA_SAM_API_KEY: !Sub '{{resolve:ssm:/jcloudify-api/${Env}/poja/sam/api/key}}'
+          POJA_SAM_API_KEY: !Sub '{{resolve:ssm:/poja-api/${Env}/poja/sam/api/key}}'
 
       FunctionUrlConfig:
         AuthType: NONE
