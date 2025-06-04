@@ -117,6 +117,7 @@
   },
   {
     "cli_version": "20.0.6",
-    "url": "https://dszucln7g37zsbekgjuoskexg40slttz.lambda-url.eu-west-3.on.aws/"
+    "url": "https://dszucln7g37zsbekgjuoskexg40slttz.lambda-url.eu-west-3.on.aws/",
+    "public_version": "1.3.1"
   }
 ]
